@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Owed Money Go Where?</title>
+    <link rel="icon" href="img\icon.png" type="image/x-icon"/>
+    <script defer src="signUpScript.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="p-2 min-h-screen bg-cover bg-center" style="background-image: url(img/background.jpg)">
+    <form class="flex flex-col items-center justify-center text-center min-h-screen bg-cover bg-center"
+        style="background-image: url(img/background.jpg)">
+        <div id="signUpForm" class="flex flex-col p-6 space-y-4 bg-gradient-to-bl from-gray-100 to-gray-300">
+            <h1 class="text-2xl font-bold">Register for an account</h1>
+
+            <!-- Username -->
+            <div class="flex items-center mb-4">
+                <label for="sname" class="w-24">Username</label>
+                <input id="sname" type="text" placeholder="Enter username"
+                    class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <!-- Password -->
+            <div class="flex items-center mb-6">
+                <label for="spassword" class="w-24">Password</label>
+                <input id="spassword" type="password" placeholder="Enter password"
+                    class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <!-- Confirm Password -->
+            <div class="flex items-center mb-6">
+                <label for="cpassword" class="w-24">Confirm Password</label>
+                <input id="cpassword" type="password" placeholder="Re-enter password"
+                    class="flex-1 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            </div>
+
+            <!-- Register Button -->
+            <button id="bRegister"
+                class="w-full bg-red-900 text-white py-2 rounded-lg hover:bg-red-600 transition">Register</button>
+
+            <!-- Reroute -->
+
+            <!-- Divider 2-->
+            <div class="flex items-center mb-4">
+                <hr class="flex-grow border-gray-300" />
+            </div>
+
+            <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+                Already have an account? <a href="index.html"
+                    class="font-medium text-primary-600 hover:underline dark:text-primary-500">Login
+                    here</a>
+            </p>
+            <p class="text-sm text-gray-500 mb-2">(C) 2025 by Ah Long</p>
+            <p class="text-sm text-gray-500 mb-2">(This app was developed for educational purpose only)</p>
+        </div>
+    </form>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Owed Money Go Where?</title>
+  <link rel="icon" href="img\icon.png" type="image/x-icon" />
+  <script defer src="landingScript.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+
+<body class="bg-gray-100">
+
+  <!-- Navigation Bar -->
+  <nav class="bg-red-700 text-white font-bold p-4 shadow">
+    <ul class="flex flex-row justify-between w-full">
+      <!--Menu-->
+      <li>
+        <button id="bNavHamburger" aria-controls="collapsibleMenu" aria-expanded="false"
+          class="text-white hover:text-gray-200">
+          <!-- Hamburger Icon (3 lines) -->
+          <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </li>
+
+      <!-- Right side name and reserve image for cart -->
+      <li>
+        <p id="pWelcome" class="text-sm italic text-white"></p>
+        <div id="dTime" class="text-white font-bold"></div>
+      </li>
+      <li class="flex space-x-4">
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img id="cartMenu" src="" class="h-7" alt=""/>
+        <span class="self-center text-sm font-semibold whitespace-nowrap dark:text-white">Ah Long Pte. Ltd.</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Collapsible Menus Container (hidden by default) -->
+    <div id="collapsibleMenu" class="hidden mt-2">
+      <ul class="flex flex-col space-y-2">
+
+        <!-- About -->
+        <li class="relative">
+          <button id="bAboutToggle" class="hover:text-gray-200">
+            About
+          </button>
+          <div id="aboutMenu" class="hidden mt-2 w-48 bg-white text-gray-700 font-normal shadow-lg">
+            <ul class="text-sm">
+              <li id="vision" class="px-4 py-2 hover:bg-gray-100">
+                <a href="#" class="hover:text-gray-900">Vision</a>
+              </li>
+              <li id="mission" class="px-4 py-2 hover:bg-gray-100">
+                <a href="#" class="hover:text-gray-900">Mission</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Services -->
+        <li class="relative">
+          <button id="bServicesToggle" class="hover:text-gray-200">
+            Services
+          </button>
+          <div id="servicesMenu" class="hidden mt-2 w-48 bg-white text-gray-800 font-normal shadow-lg">
+            <ul class="text-sm">
+              <li id="banner" class="px-4 py-2 hover:bg-gray-100">
+                <a href="#" class="hover:text-gray-900">Banner</a>
+              </li>
+              <li id="paint" class="px-4 py-2 hover:bg-gray-100">
+                <a href="#" class="hover:text-gray-900">Paint</a>
+              </li>
+              <li id="collector" class="px-4 py-2 hover:bg-gray-100">
+                <a href="#" class="hover:text-gray-900">Collector</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+
+        <!-- Sign Out -->
+        <li class="relative">
+          <button id="bSignOutToggle" class="hover:text-gray-200">
+            Sign Out
+          </button>
+        </li>
+
+      </ul>
+    </div>
+  </nav>
+
+  <!--Diplay Area-->
+  <section id="display" class="flex flex-row space-x-20 bg-gray-200 text-center">
+    <div id="leftContainer" class="p-2 m-2 p-4 w-[30%] space-y-4">
+      <h1 id="leftH1" class="text-2xl font-bold"></h1>
+      <p id="leftP" class="text-sm"></p>
+      <div id="leftContent" class="space-y-4"></div>
+    </div>
+    <div id="rightContainer" class="p-2 m-2 p-4 w-[70%] space-y-4">
+      <h1 id="rightH1" class="text-2xl font-bold"></h1>
+      <p id="rightP" class="text-sm"></p>
+      <div id="rightContent" class="flex flex-col space-y-4">
+        <div id="rightTop" class="flex-1">
+          <div id="rightTopInner" class="relative"></div>
+        </div>
+        <div id="rightBottom" class="flex-1">
+          <div id="rightBottomInner"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+  // Toggle for the entire menu (About + Services)
+  const navbarHamburger = document.getElementById('bNavHamburger');
+  const collapsibleMenu = document.getElementById('collapsibleMenu');
+
+  navbarHamburger.addEventListener('click', function () {
+    clearContent();
+    defaultDisplay();
+    // Toggle the visibility of the menu
+    collapsibleMenu.classList.toggle('hidden');
+
+    // Toggle aria-expanded attribute
+    const expanded = navbarHamburger.getAttribute('aria-expanded') === 'true';
+    navbarHamburger.setAttribute('aria-expanded', !expanded);
+  });
+
+  // Toggle for the About dropdown
+  document.getElementById('bAboutToggle').addEventListener('click', function () {
+    clearContent();
+    defaultDisplay();
+    const aboutMenu = document.getElementById('aboutMenu');
+    const servicesMenu = document.getElementById('servicesMenu');
+    
+    // If Services menu is open, close it
+    if (!servicesMenu.classList.contains('hidden')) {
+      servicesMenu.classList.add('hidden');
+    }
+    
+    // Toggle About menu
+    aboutMenu.classList.toggle('hidden');
+  });
+
+  // Toggle for the Services dropdown
+  document.getElementById('bServicesToggle').addEventListener('click', function () {
+    clearContent();
+    defaultDisplay();
+    const servicesMenu = document.getElementById('servicesMenu');
+    const aboutMenu = document.getElementById('aboutMenu');
+    
+    // If About menu is open, close it
+    if (!aboutMenu.classList.contains('hidden')) {
+      aboutMenu.classList.add('hidden');
+    }
+    
+    // Toggle Services menu
+    servicesMenu.classList.toggle('hidden');
+  });
+  </script>
+
+  <footer class="bg-gray-100 p-4">
+    <p class="text-sm text-gray-500 mb-2">(C) 2025 by Ah Long</p>
+    <p class="text-sm text-gray-500 mb-2">(This app was developed for educational purpose only)</p>
+  </footer>
+</body>
+
+</html>
