@@ -520,7 +520,7 @@ document.getElementById('cartMenu').addEventListener('click', async function () 
       <div id="cartItems"></div>
     </div>
     `;
-    rightBottomInner.innerHTML = `<p class="text-sm">Total Price: $${data.cart.totalPrice}</p>`;
+    rightBottomInner.innerHTML = `<p class="text-lg">Total Price: $${data.cart.totalPrice}</p>`;
 
     // 🛒 Now dynamically render products
     const cartItemsDiv = document.getElementById('cartItems');
@@ -528,12 +528,8 @@ document.getElementById('cartMenu').addEventListener('click', async function () 
 
     data.cart.products.forEach((product, index) => {
       const item = document.createElement('div');
-      item.className = 'p-3 border rounded bg-white shadow text-sm';
-      item.innerHTML = `
-        <p class="font-bold">${index + 1}. ${product.type}</p>
-        <p class="italic">Unit Price: <p>$${product.unitPrice}</p></p>
-        <p class="italic">Detail: <p> ${Object.entries(product.config).map(([key, val]) => `${key}: ${val}`).join(', ')}</p></p>
-      `;
+      item.className = 'p-2 shadow text-lg';
+      item.innerHTML = translateCart(product);
       cartItemsDiv.appendChild(item);
     });
   };
@@ -797,7 +793,7 @@ function alertCart(action) {
   } else if (action === 'update') {
     msg = "Cart successfully updated!";
   } else if (action === 'guest') {
-    msg = "You are not allow to place order."
+    msg = "You are not authorised to place order."
   }
 
   const message = document.createElement('span');
@@ -814,4 +810,30 @@ function alertCart(action) {
   alert.appendChild(message);
   alert.appendChild(button);
   document.body.appendChild(alert);
+};
+
+function translateCart(product) {
+  let htmlCode = '';
+  if (product.type === 'banner') {
+    htmlCode = `
+      <div id="${product._id}" class="justify-left cursor-pointer hover:bg-white">
+        <p class="w-full">Banner of ${product.config.size} size with ${product.config.language} message: $${product.unitPrice}</p>
+      </div>
+      `;
+    return htmlCode;
+  } else if (product.type === 'paint') {
+    htmlCode = `
+      <div id="${product._id}" class="justify-left cursor-pointer hover:bg-white">
+        <p class="w-full">Paint at ${product.config.location} in ${product.config.colour} colour: $${product.unitPrice}</p>
+      </div>
+      `;
+    return htmlCode;
+  } else if (product.type === 'collector') {
+    htmlCode = `
+      <div id="${product._id}" class="justify-left cursor-pointer hover:bg-white">
+        <p class="w-full">Collector name ${product.config.name}: $${product.unitPrice}</p>
+      </div>
+      `;
+    return htmlCode;
+  };
 };
